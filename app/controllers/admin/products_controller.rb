@@ -4,6 +4,7 @@ class Admin::ProductsController < ApplicationController
 
   def index
     @products = Product.order(id: :desc).all
+    @products_count = Product.count
   end
 
   def new
