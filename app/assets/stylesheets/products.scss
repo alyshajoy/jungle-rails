@@ -85,6 +85,11 @@ main section.categories-show {
           display: inline-block;
           margin-left: auto;
         }
+        .btn-danger {
+          background-color: #dc3545 !important; // Bootstrap's default red for danger buttons
+          border-color: #dc3545 !important; // Ensures the border color matches
+          color: white !important; // Makes the text color white
+        }
         button {
           min-width: 110px;
           padding-left: 1em;
