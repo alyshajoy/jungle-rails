@@ -1,5 +1,9 @@
 <h1>User Login</h1>
 
+<% if flash[:alert] %>
+  <div class="alert alert-danger"><%= flash[:alert] %></div>
+<% end %>
+
 <%= form_tag login_path do %>
   <%= label_tag :email %>
   <%= text_field_tag :email %>
