@@ -1,21 +1,31 @@
-<h1>Register Your Account</h1>
+<h1 class="page-header">Register Your Account</h1>
 
 <%= form_for :user, url: users_path do |f| %>
-  <%= f.label :first_name %>
-  <%= f.text_field :first_name %>
-  <br/>
+  <div class="mb-3">
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
+    <br/>
+  </div>
 
-  <%= f.label :last_name %>
-  <%= f.text_field :last_name %>
-  <br/>
+  <div class="mb-3">
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
+    <br/>
+  </div>
 
-  <%= f.label :email %>
-  <%= f.email_field :email %>
-  <br/>
+  <div class="mb-3">
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+    <br/>
+  </div>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-  <br/>
+  <div class="mb-3">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    <br/>
+  </div>
 
-  <%= f.submit "Register" %>
+  <div class="mb-3">
+    <%= f.submit "Register" %>
+  </div>
 <% end %>
