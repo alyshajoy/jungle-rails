@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
 
-  it 'is valid when all fields are included, and passwords match' do
+  it 'is valid when all fields are included, email is unique, and passwords match' do
     user = User.new(first_name: "Alysha", last_name: "Huot", email: "alyshajhuot@gmail.com", password: 'password123', password_confirmation: 'password123')
     expect(user).to be_valid
   end
@@ -25,6 +25,26 @@ RSpec.describe User, type: :model do
   it 'is not valid without an email' do
     user = User.new(first_name: "Alysha", last_name: "Huot", password: 'password123', password_confirmation: 'password123')
     expect(user).not_to be_valid
+  end
+
+  it 'is not valid if email is not unique' do
+    user = User.create(first_name: "Alysha", last_name: "Huot", email: "alyshajhuot@gmail.com", password: 'password123', password_confirmation: 'password123')
+    expect(user).to be_valid
+
+    user2 = User.new(first_name: "Alysha", last_name: "Huot", email: "alyshajhuot@gmail.com", password: 'password123', password_confirmation: 'password123')
+    user2.valid?
+    expect(user2).not_to be_valid
+    expect(user2.errors[:email]).to include("has already been taken")
+  end
+
+  it 'is not valid if email is not unique, but has different case' do
+    user = User.create(first_name: "Alysha", last_name: "Huot", email: "alyshajhuot@gmail.com", password: 'password123', password_confirmation: 'password123')
+    expect(user).to be_valid
+
+    user2 = User.new(first_name: "Alysha", last_name: "Huot", email: "ALYSHAJHUOT@gmail.com", password: 'password123', password_confirmation: 'password123')
+    user2.valid?
+    expect(user2).not_to be_valid
+    expect(user2.errors[:email]).to include("has already been taken")
   end
 
 end
